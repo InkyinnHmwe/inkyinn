@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../../model/user');
 var Post = require('../../model/post');
-var checkAuth = require('../middleware/check-Auth');
+// var checkAuth = require('../middleware/check-Auth');
 var bcrypt = require('bcryptjs');
 
 router.get('/list', function(req,res){
@@ -20,7 +20,7 @@ router.get('/list', function(req,res){
   })
 })
 
-router.post('/add',checkAuth, function(req,res){
+router.post('/add', function(req,res){
   var user = new User();
   user.name = req.body.name;
   user.email = req.body.email;
