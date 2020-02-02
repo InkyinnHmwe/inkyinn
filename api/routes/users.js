@@ -5,20 +5,20 @@ var Post = require('../../model/post');
 var checkAuth = require('../middleware/check-Auth');
 var bcrypt = require('bcryptjs');
 
-// router.get('/list', function(req,res){
-//   User.find(function (err, rtn){
-//     if (err){
-//       res.status(500).json({
-//         message:"Internal server error",
-//         error:err
-//       })
-//     }else {
-//       res.status(200).json({
-//         users:rtn
-//       })
-//     }
-//   })
-// })
+router.get('/list', function(req,res){
+  User.find(function (err, rtn){
+    if (err){
+      res.status(500).json({
+        message:"Internal server error",
+        error:err
+      })
+    }else {
+      res.status(200).json({
+        users:rtn
+      })
+    }
+  })
+})
 
 router.post('/add',checkAuth, function(req,res){
   var user = new User();
