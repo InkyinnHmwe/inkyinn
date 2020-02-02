@@ -9,6 +9,8 @@ var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postsRouter = require('./routes/posts');
+var apiusersrouter = require('./api/routes/users');
+// var apiAdminRouter = require('./api/routes/admin');
 
 var app = express();
 
@@ -28,8 +30,8 @@ app.use(session({
   saveUninitialized: true
 }))
 
-mongoose.connect('mongodb://127.0.0.1/node007js');
-// mongoose.connect('mongodb+srv://inkyinnhmwe:inkyinnhmwe123@007nodejs-rzc92.mongodb.net/test?retryWrites=true&w=majority');
+// mongoose.connect('mongodb://127.0.0.1/node007js');
+mongoose.connect('mongodb+srv://inkyinnhmwe:inkyinnhmwe123@nodejs007-ryh3g.mongodb.net/test?retryWrites=true&w=majority');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console,'MongoDB connection error'))
@@ -40,6 +42,8 @@ app.use(function(req, res, next){
 })
 
 app.use('/', indexRouter);
+app.use('/api/users',apiusersrouter);
+// app.use('/api', apiAdminRouter);
 app.use(function(req, res, next){
   if(req.session.user)
   {
